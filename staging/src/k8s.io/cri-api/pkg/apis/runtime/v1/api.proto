@@ -1523,6 +1523,8 @@ message ContainerStats {
     MemoryUsage memory = 3;
     // Usage of the writable layer.
     FilesystemUsage writable_layer = 4;
+    // Usage of the Block IO
+    BlockIOUsage block_io_usage = 5;
 }
 
 // CpuUsage provides the CPU usage information.
@@ -1552,6 +1554,16 @@ message MemoryUsage {
     UInt64Value page_faults = 6;
     // Cumulative number of major page faults.
     UInt64Value major_page_faults = 7;
+}
+
+// BlockIOUsage provides the Block I/O usage information.
+message BlockIOUsage {
+    // Timestamp in nanoseconds at which the information were collected. Must be > 0.
+    int64 timestamp = 1;
+    // Cumulative count of bytes read.
+    UInt64Value read_bytes = 2;
+    // Cumulative count of bytes write.
+    UInt64Value write_bytes = 3;
 }
 
 message ReopenContainerLogRequest {
